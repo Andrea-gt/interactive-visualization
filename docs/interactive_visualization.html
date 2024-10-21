@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Lorem-ipsum-dolor-sit-amet"><strong>Lorem ipsum dolor sit amet</strong><a class="anchor-link" href="#Lorem-ipsum-dolor-sit-amet">¶</a></h1>
+<h1 id="Interactive-Data-Visualization"><strong>Interactive Data Visualization</strong><a class="anchor-link" href="#Interactive-Data-Visualization">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7527,8 +7527,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus porttitor turpis non consequat. Donec at lobortis est, non consectetur sapien. Proin non libero finibus, mattis est id, imperdiet metus. Maecenas convallis erat sit amet varius elementum. Ut tristique accumsan urna, sed congue ex sagittis ut. Nam posuere ante nibh, at consectetur arcu viverra non. Aliquam bibendum tincidunt tristique. Aenean hendrerit hendrerit massa in tincidunt. Proin sodales dolor maximus, tempus risus vitae, ornare quam. Duis at massa rhoncus, semper nisl at, sagittis felis. Morbi quis bibendum nisl, vel interdum magna.</p>
-<p>Aliquam metus dolor, posuere sed arcu id, accumsan hendrerit quam. Pellentesque non sodales libero. Phasellus eleifend viverra aliquet. Etiam sit amet dapibus turpis. Nulla quis sollicitudin ipsum. Nam volutpat dolor in est tempor, et gravida dui sollicitudin. Duis viverra, massa nec dictum mollis, nisl libero hendrerit ex, sit amet ultricies elit ex ac quam. Sed ornare dolor vel hendrerit aliquet. Suspendisse faucibus orci id urna feugiat, nec vestibulum dui rhoncus. Quisque laoreet malesuada massa, et convallis urna. Pellentesque diam dui, congue eu aliquet eget, lacinia nec enim. Morbi pulvinar, felis vel ullamcorper porttitor, ex arcu consequat erat, efficitur consectetur turpis ex sit amet felis. Integer a est libero. Suspendisse potenti. Phasellus rhoncus fringilla euismod. Ut efficitur tortor hendrerit, tincidunt metus sit amet, consectetur enim.</p>
+<p>Este notebook proporciona una plataforma interactiva para la exploración de datos de series de tiempo de distintos productos pretroleros en Guatemala, permitiendo a los usuarios visualizar resultados a través de gráficos adecuados según el tipo de datos. Facilita la visualización de predicciones o clasificaciones a partir de tres modelos sencillos y presenta información relevante mediante gráficos enlazados. Los usuarios pueden ajustar el nivel de detalle en las visualizaciones y comparar los modelos predictivos.</p>
 </div>
 </div>
 </div>
@@ -7585,6 +7584,8 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mticker</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
 
 <span class="c1"># Standard libraries</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -7606,52 +7607,6 @@ a.anchor-link {
 <span class="c1"># Set the style of seaborn</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">)</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a slider widget to allow users to select a floating point value, labeled 'x'</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">'$x$'</span><span class="p">)</span>
-
-<span class="c1"># Create a text widget to display the squared value of the slider's input, labeled 'x^2'</span>
-<span class="c1"># This widget is disabled to prevent user input (it's only for displaying output)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span><span class="n">disabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'$x^2$'</span><span class="p">)</span>
-
-<span class="c1"># Define a function that computes the square of the slider's value</span>
-<span class="c1"># and updates the text widget with the result</span>
-<span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="o">*</span><span class="n">ignore</span><span class="p">):</span>
-    <span class="n">text</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">slider</span><span class="o">.</span><span class="n">value</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># Link the slider to the compute function; this ensures that any change</span>
-<span class="c1"># in the slider's value triggers a re-calculation of the square</span>
-<span class="n">slider</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">compute</span><span class="p">,</span> <span class="s1">'value'</span><span class="p">)</span>
-
-<span class="c1"># Set an initial value for the slider (4 in this case), which will also trigger the function to update the text widget</span>
-<span class="n">slider</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="c1"># Display the slider and the text output in a vertical layout (VBox)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">slider</span><span class="p">,</span> <span class="n">text</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>VBox(children=(FloatSlider(value=4.0, description='$x$'), FloatText(value=16.0, description='$x^2$', disabled=…</pre>
 </div>
 </div>
 </div>
@@ -8321,7 +8276,7 @@ date
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="(1)-Visualizaci%C3%B3n-de-Series-de-Tiempo"><strong>(1) Visualización de Series de Tiempo</strong><a class="anchor-link" href="#(1)-Visualizaci%C3%B3n-de-Series-de-Tiempo">¶</a></h4>
+<h4 id="(1)-An%C3%A1lisis-Visual-de-Series-Temporales"><strong>(1) Análisis Visual de Series Temporales</strong><a class="anchor-link" href="#(1)-An%C3%A1lisis-Visual-de-Series-Temporales">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8339,45 +8294,87 @@ date
     <span class="s2">"Importation"</span><span class="p">:</span> <span class="s2">"Importation (Barrel, 42 gallons)"</span><span class="p">,</span>
     <span class="s2">"Pricing"</span><span class="p">:</span> <span class="s2">"Price (GTQ/Gal)"</span>
 <span class="p">}</span>
-
-<span class="c1"># Create a dropdown widget for selecting the DataFrame</span>
-<span class="n">df_selector</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
-    <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">dataframe_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">'Dataset:'</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Function to plot the selected DataFrame</span>
-<span class="k">def</span> <span class="nf">plot_dataframe</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="c1"># Get the DataFrame based on the name</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">dataframe_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># Default to None if the name is not found</span>
-    
-    <span class="c1"># Create the line plots</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'gasoline_regular'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Gasoline Regular'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'gasoline_superior'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Gasoline Superior'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'liquefied_gas'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Liquefied Gas'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'diesel'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Diesel'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-
-    <span class="c1"># Add titles and labels with improved formatting</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Trends in Petroleum Product </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> in Guatemala'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Date'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-    
-    <span class="c1"># Set the y-axis label based on the selected dataset</span>
-    <span class="n">y_label</span> <span class="o">=</span> <span class="n">y_label_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">'Price'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-    
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># Rotate x-axis labels for better readability</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># Increase font size for y-ticks</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Fuel Type'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    
-    <span class="c1"># Set y-axis tick formatting to include thousand separators</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>  <span class="c1"># Get the current axis</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mticker</span><span class="o">.</span><span class="n">StrMethodFormatter</span><span class="p">(</span><span class="s1">'</span><span class="si">{x:,.0f}</span><span class="s1">'</span><span class="p">))</span>  <span class="c1"># Format y-ticks</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># Add a grid for better readability</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Adjust layout to make room for rotated x-axis labels</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_dataframe</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="c1"># Get the DataFrame based on the name</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">dataframe_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="c1"># Create a figure widget</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+
+    <span class="c1"># Function to update the graph based on the selected fuel type</span>
+    <span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">selected_fuel</span><span class="p">):</span>
+        <span class="c1"># Clear the current figure</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Add the selected fuel type's line plot</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">selected_fuel</span><span class="p">],</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">'lines'</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">selected_fuel</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
+            <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[[</span><span class="s1">'gasoline_regular'</span><span class="p">,</span> <span class="s1">'gasoline_superior'</span><span class="p">,</span> <span class="s1">'liquefied_gas'</span><span class="p">,</span> <span class="s1">'diesel'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">selected_fuel</span><span class="p">)])</span>
+        <span class="p">))</span>
+
+        <span class="c1"># Update titles and labels</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Trends in Petroleum Product </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> in Guatemala'</span><span class="p">,</span>
+            <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">'Arial, sans-serif'</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">),</span>
+            <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="n">y_label_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">'Price'</span><span class="p">),</span>
+            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">tickangle</span><span class="o">=</span><span class="mi">45</span><span class="p">),</span>  <span class="c1"># Rotate x-axis labels for better readability</span>
+            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">tickformat</span><span class="o">=</span><span class="s1">',.0f'</span><span class="p">),</span>  <span class="c1"># Format y-axis ticks with thousand separators</span>
+            <span class="n">legend_title</span><span class="o">=</span><span class="s1">'Fuel Type'</span><span class="p">,</span>
+            <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)),</span>
+            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">'white'</span>  <span class="c1"># Background color</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Create a dropdown to select the fuel type</span>
+    <span class="n">fuel_dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s1">'Gasoline Regular'</span><span class="p">,</span> <span class="s1">'gasoline_regular'</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">'Gasoline Superior'</span><span class="p">,</span> <span class="s1">'gasoline_superior'</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">'Liquefied Gas'</span><span class="p">,</span> <span class="s1">'liquefied_gas'</span><span class="p">),</span>
+            <span class="p">(</span><span class="s1">'Diesel'</span><span class="p">,</span> <span class="s1">'diesel'</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">'diesel'</span><span class="p">,</span>  <span class="c1"># Default value</span>
+        <span class="n">description</span><span class="o">=</span><span class="s1">'Fuel Type:'</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Set the update function to be called when the dropdown value changes</span>
+    <span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">change</span><span class="p">:</span> <span class="n">update_graph</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s1">'new'</span><span class="p">]),</span> <span class="n">names</span><span class="o">=</span><span class="s1">'value'</span><span class="p">)</span>
+
+    <span class="c1"># Initial plot</span>
+    <span class="n">update_graph</span><span class="p">(</span><span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># Display the dropdown and the figure</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fuel_dropdown</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="(1)-An%C3%A1lisis-Visual-de-Serie-de-Consumo"><strong>(1) Análisis Visual de Serie de Consumo</strong><a class="anchor-link" href="#(1)-An%C3%A1lisis-Visual-de-Serie-de-Consumo">¶</a></h5>
 </div>
 </div>
 </div>
@@ -8389,8 +8386,7 @@ date
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create an interactive output using the df_selector</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">plot_dataframe</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">df_selector</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plot_dataframe</span><span class="p">(</span><span class="s2">"Consumption"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8403,7 +8399,34 @@ date
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>interactive(children=(Dropdown(description='Dataset:', options=('Consumption', 'Importation', 'Pricing'), valu…</pre>
+<pre>Dropdown(description='Fuel Type:', index=3, options=(('Gasoline Regular', 'gasoline_regular'), ('Gasoline Supe…</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FE6100'},
+              'mode': 'lines',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': '495444ba-2a8e-4894-863b-2a6105945cec',
+              'x': array([datetime.datetime(2000, 1, 1, 0, 0),
+                          datetime.datetime(2000, 2, 1, 0, 0),
+                          datetime.datetime(2000, 3, 1, 0, 0), ...,
+                          datetime.datetime(2024, 3, 1, 0, 0),
+                          datetime.datetime(2024, 4, 1, 0, 0),
+                          datetime.datetime(2024, 5, 1, 0, 0)], dtype=object),
+              'y': array([ 634667.06,  642380.66,  699807.25, ..., 1393324.52, 1428143.44,
+                          1401052.37])}],
+    'layout': {'legend': {'font': {'size': 12}, 'title': {'text': 'Fuel Type'}},
+               'plot_bgcolor': 'white',
+               'template': '...',
+               'title': {'font': {'family': 'Arial, sans-serif', 'size': 16, 'weight': 'bold'},
+                         'text': 'Trends in Petroleum Product Consumption in Guatemala'},
+               'xaxis': {'tickangle': 45, 'title': {'text': 'Date'}},
+               'yaxis': {'tickformat': ',.0f', 'title': {'text': 'Consumption (Barrel, 42 gallons)'}}}
+})</pre>
 </div>
 </div>
 </div>
@@ -8415,7 +8438,159 @@ date
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="(2)-Top-Distribuci%C3%B3n-por-Mes-o-A%C3%B1o"><strong>(2) Top Distribución por Mes o Año</strong><a class="anchor-link" href="#(2)-Top-Distribuci%C3%B3n-por-Mes-o-A%C3%B1o">¶</a></h4>
+<h5 id="(2)-An%C3%A1lisis-Visual-de-Serie-de-Importaci%C3%B3n"><strong>(2) Análisis Visual de Serie de Importación</strong><a class="anchor-link" href="#(2)-An%C3%A1lisis-Visual-de-Serie-de-Importaci%C3%B3n">¶</a></h5>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plot_dataframe</span><span class="p">(</span><span class="s2">"Importation"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Dropdown(description='Fuel Type:', index=3, options=(('Gasoline Regular', 'gasoline_regular'), ('Gasoline Supe…</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FE6100'},
+              'mode': 'lines',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': '1859d38c-4ac5-4208-ad88-d782a87af18c',
+              'x': array([datetime.datetime(2001, 1, 1, 0, 0),
+                          datetime.datetime(2001, 2, 1, 0, 0),
+                          datetime.datetime(2001, 3, 1, 0, 0), ...,
+                          datetime.datetime(2024, 3, 1, 0, 0),
+                          datetime.datetime(2024, 4, 1, 0, 0),
+                          datetime.datetime(2024, 5, 1, 0, 0)], dtype=object),
+              'y': array([ 566101.99,  489525.8 ,  575559.68, ..., 1477038.  , 1294706.12,
+                          1470870.09])}],
+    'layout': {'legend': {'font': {'size': 12}, 'title': {'text': 'Fuel Type'}},
+               'plot_bgcolor': 'white',
+               'template': '...',
+               'title': {'font': {'family': 'Arial, sans-serif', 'size': 16, 'weight': 'bold'},
+                         'text': 'Trends in Petroleum Product Importation in Guatemala'},
+               'xaxis': {'tickangle': 45, 'title': {'text': 'Date'}},
+               'yaxis': {'tickformat': ',.0f', 'title': {'text': 'Importation (Barrel, 42 gallons)'}}}
+})</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="(3)-An%C3%A1lisis-Visual-de-Serie-de-Precios"><strong>(3) Análisis Visual de Serie de Precios</strong><a class="anchor-link" href="#(3)-An%C3%A1lisis-Visual-de-Serie-de-Precios">¶</a></h5>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plot_dataframe</span><span class="p">(</span><span class="s2">"Pricing"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Dropdown(description='Fuel Type:', index=3, options=(('Gasoline Regular', 'gasoline_regular'), ('Gasoline Supe…</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FE6100'},
+              'mode': 'lines',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': '7ddf7914-21e4-4117-b429-b7450683c7a9',
+              'x': array([datetime.datetime(2021, 1, 1, 0, 0),
+                          datetime.datetime(2021, 1, 2, 0, 0),
+                          datetime.datetime(2021, 1, 3, 0, 0), ...,
+                          datetime.datetime(2024, 7, 26, 0, 0),
+                          datetime.datetime(2024, 7, 27, 0, 0),
+                          datetime.datetime(2024, 7, 28, 0, 0)], dtype=object),
+              'y': array([17.61, 17.61, 17.61, ..., 28.09, 28.09, 28.09])}],
+    'layout': {'legend': {'font': {'size': 12}, 'title': {'text': 'Fuel Type'}},
+               'plot_bgcolor': 'white',
+               'template': '...',
+               'title': {'font': {'family': 'Arial, sans-serif', 'size': 16, 'weight': 'bold'},
+                         'text': 'Trends in Petroleum Product Pricing in Guatemala'},
+               'xaxis': {'tickangle': 45, 'title': {'text': 'Date'}},
+               'yaxis': {'tickformat': ',.0f', 'title': {'text': 'Price (GTQ/Gal)'}}}
+})</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Instrucciones para Utilizar el Gráfico ⚙️</strong></p>
+<p>En estos gráfico interactivos, puedes obesevar diferentes conjuntos de datos relacionados con productos derivados del petróleo en Guatemala, como "Consumo", "Importación" o "Precio". A través del menú desplegable, puedes elegir cuál tipo de combustible deseas visualizar para cada conjunto.</p>
+<p>El gráfico muestra las tendencias a lo largo del tiempo para varios tipos de combustibles, incluyendo:</p>
+<ul>
+<li>Gasolina Regular</li>
+<li>Gasolina Superior</li>
+<li>Gas Licuado</li>
+<li>Diésel</li>
+</ul>
+<p>Las líneas del gráfico corresponden a cada uno de estos combustibles, y la leyenda te ayuda a identificarlos por color.</p>
+<p>El eje x representa las fechas, mientras que el eje y se adapta automáticamente al tipo de dato seleccionado:</p>
+<ul>
+<li>Si seleccionas Consumo o Importación, el eje y mostrará los valores en barriles (42 galones cada uno).</li>
+<li>Si seleccionas Precio, el eje y mostrará los precios en quetzales por galón (GTQ/Gal).</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="(2)-An%C3%A1lisis-de-la-Distribuci%C3%B3n-Mensual-y-Anual-de-Series-Temporales"><strong>(2) Análisis de la Distribución Mensual y Anual de Series Temporales</strong><a class="anchor-link" href="#(2)-An%C3%A1lisis-de-la-Distribuci%C3%B3n-Mensual-y-Anual-de-Series-Temporales">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8429,6 +8604,9 @@ date
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Function to plot maximums interactively</span>
 <span class="k">def</span> <span class="nf">top_months_interactive</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">detail_level</span><span class="p">):</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Starting function for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> with detail level </span><span class="si">{</span><span class="n">detail_level</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
     <span class="c1"># Create a new DataFrame that aggregates data by the chosen detail level</span>
     <span class="k">if</span> <span class="n">detail_level</span> <span class="o">==</span> <span class="s1">'Monthly'</span><span class="p">:</span>
         <span class="c1"># Aggregate by month and get max for each month</span>
@@ -8507,7 +8685,26 @@ date
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="(3)-Gr%C3%A1ficos-Interactivos-de-Distribuci%C3%B3n"><strong>(3) Gráficos Interactivos de Distribución</strong><a class="anchor-link" href="#(3)-Gr%C3%A1ficos-Interactivos-de-Distribuci%C3%B3n">¶</a></h4>
+<p><strong>Instrucciones para Utilizar el Gráfico ⚙️</strong></p>
+<p>En esta gráfica interactiva puedes visualizar los valores máximos de diferentes tipos de combustibles en Guatemala, <strong>seleccionando el nivel de detalle</strong> de tal manera que los datos se muestren ya sea de forma mensual o anual.</p>
+<p>Puedes seleccionar el conjunto de datos que quieres analizar, como Consumo, Importación o Precios, usando el menú desplegable.</p>
+<p>También puedes elegir el nivel de detalle para la visualización:</p>
+<ul>
+<li>Mensual: Verás los máximos agregados por cada mes.</li>
+<li>Anual: Verás los máximos agregados por cada año.</li>
+</ul>
+<p>Los combustibles visualizados incluyen Gasolina Regular, Gasolina Superior, Gas Licuado y Diésel. El gráfico se muestra en formato de barras, donde cada barra representa el valor máximo del tipo de combustible seleccionado en un mes o año. Las etiquetas del eje x se ajustan según la opción seleccionada.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="(3)-An%C3%A1lisis-de-Frecuencia-por-Tipo-de-Combustible-(Gr%C3%A1ficos-Enlazados)"><strong>(3) Análisis de Frecuencia por Tipo de Combustible (Gráficos Enlazados)</strong><a class="anchor-link" href="#(3)-An%C3%A1lisis-de-Frecuencia-por-Tipo-de-Combustible-(Gr%C3%A1ficos-Enlazados)">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8532,48 +8729,114 @@ date
         <span class="n">description</span><span class="o">=</span><span class="s1">'Fuel Type:'</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Create an empty figure widget for dynamic updates</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+    <span class="c1"># Create a label to display the selected range</span>
+    <span class="n">selected_range_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'Selected Range: None'</span><span class="p">)</span>
 
-    <span class="c1"># Initialize the plot with the default fuel type</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span>
+    <span class="c1"># Create an empty figure widget for dynamic updates</span>
+    <span class="n">fig_hist</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+    <span class="n">fig_line</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+
+    <span class="c1"># Initialize the histogram with the default fuel type</span>
+    <span class="n">trace_hist</span> <span class="o">=</span> <span class="n">fig_hist</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'diesel'</span><span class="p">],</span>
         <span class="n">name</span><span class="o">=</span><span class="s1">'Diesel'</span><span class="p">,</span>
         <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="p">))</span>
 
-    <span class="c1"># Set up the initial layout</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="c1"># Initialize the line chart with the default fuel type</span>
+    <span class="n">fig_line</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">'diesel'</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers'</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'Diesel'</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="p">))</span>
+
+    <span class="c1"># Set up the initial layout for histogram</span>
+    <span class="n">fig_hist</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
         <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Diesel </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> Distribution'</span><span class="p">,</span>
         <span class="n">xaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
         <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">'Count'</span><span class="p">,</span>
+        <span class="n">hovermode</span><span class="o">=</span><span class="s1">'x unified'</span><span class="p">,</span>
+        <span class="n">dragmode</span><span class="o">=</span><span class="s1">'select'</span>  <span class="c1"># Enable selection mode</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Set up the initial layout for line chart</span>
+    <span class="n">fig_line</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'Diesel </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> Over Time'</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">'Date'</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
         <span class="n">hovermode</span><span class="o">=</span><span class="s1">'x unified'</span>
     <span class="p">)</span>
 
-    <span class="c1"># Display the dropdown and the figure</span>
+    <span class="c1"># Display the dropdown, histogram, and line chart</span>
     <span class="n">display</span><span class="p">(</span><span class="n">fuel_dropdown</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig_hist</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig_line</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">selected_range_label</span><span class="p">)</span>
 
     <span class="c1"># Function to update the chart when the fuel type is changed</span>
     <span class="k">def</span> <span class="nf">update_chart</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
         <span class="n">fuel_type</span> <span class="o">=</span> <span class="n">change</span><span class="p">[</span><span class="s1">'new'</span><span class="p">]</span>
         
-        <span class="c1"># Update the trace data</span>
-        <span class="k">with</span> <span class="n">fig</span><span class="o">.</span><span class="n">batch_update</span><span class="p">():</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_type</span><span class="p">]</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">fuel_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">marker</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Update the histogram trace data</span>
+        <span class="k">with</span> <span class="n">fig_hist</span><span class="o">.</span><span class="n">batch_update</span><span class="p">():</span>
+            <span class="n">fig_hist</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_type</span><span class="p">]</span>
+            <span class="n">fig_hist</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">fuel_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+            <span class="n">fig_hist</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">marker</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">palette</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         
-        <span class="c1"># Update the layout with the new title and x-axis label</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="c1"># Update the line chart trace data</span>
+        <span class="k">with</span> <span class="n">fig_line</span><span class="o">.</span><span class="n">batch_update</span><span class="p">():</span>
+            <span class="n">fig_line</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_type</span><span class="p">]</span>
+            <span class="n">fig_line</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">fuel_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+
+        <span class="c1"># Update the layout titles</span>
+        <span class="n">fig_hist</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
             <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">fuel_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> Distribution'</span><span class="p">,</span>
             <span class="n">xaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s1">'</span>
         <span class="p">)</span>
+        <span class="n">fig_line</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">fuel_type</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> Over Time'</span><span class="p">,</span>
+            <span class="n">yaxis_title</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s1">'</span>
+        <span class="p">)</span>
 
-    <span class="c1"># Set up an observer to call update_chart when the dropdown value changes</span>
+    <span class="c1"># Function to update the selected range and line chart</span>
+    <span class="k">def</span> <span class="nf">update_selected_range</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">selector</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">points</span><span class="o">.</span><span class="n">point_inds</span><span class="p">:</span>  <span class="c1"># Check if any points are selected</span>
+            <span class="n">selected_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">points</span><span class="o">.</span><span class="n">point_inds</span><span class="p">]</span>
+            <span class="n">selected_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">selected_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">selected_data</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+            <span class="n">selected_range_label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'Selected Range: </span><span class="si">{</span><span class="n">selected_range</span><span class="si">}</span><span class="s1">'</span>
+            
+            <span class="c1"># Filter the DataFrame based on the selected range</span>
+            <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">selected_range</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> 
+                             <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">selected_range</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+            
+            <span class="c1"># Update the line chart based on the filtered data</span>
+            <span class="k">with</span> <span class="n">fig_line</span><span class="o">.</span><span class="n">batch_update</span><span class="p">():</span>
+                <span class="n">fig_line</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="p">[</span><span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+                <span class="n">fig_line</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">selected_range_label</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s1">'Selected Range: None'</span>
+
+    <span class="c1"># Set up observers for dropdown changes and selection updates</span>
     <span class="n">fuel_dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_chart</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">'value'</span><span class="p">)</span>
+    
+    <span class="c1"># Attach the update function to the histogram trace</span>
+    <span class="n">fig_hist</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">on_selection</span><span class="p">(</span><span class="n">update_selected_range</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="(1)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Consumo"><strong>(1) Distribucición de Conjunto de Datos de Consumo</strong><a class="anchor-link" href="#(1)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Consumo">¶</a></h5>
 </div>
 </div>
 </div>
@@ -8608,16 +8871,59 @@ date
     'data': [{'marker': {'color': '#648FFF'},
               'name': 'Diesel',
               'type': 'histogram',
-              'uid': '7ff3dfc4-7859-4a84-a7b2-0bd0547fb6a1',
+              'uid': '49cd1cde-0e77-4de6-a460-b8fac991412a',
               'x': array([ 634667.06,  642380.66,  699807.25, ..., 1393324.52, 1428143.44,
                           1401052.37])}],
-    'layout': {'hovermode': 'x unified',
+    'layout': {'dragmode': 'select',
+               'hovermode': 'x unified',
                'template': '...',
                'title': {'text': 'Diesel Consumption Distribution'},
                'xaxis': {'title': {'text': 'Consumption (Barrel, 42 gallons)'}},
                'yaxis': {'title': {'text': 'Count'}}}
 })</pre>
 </div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FFB001'},
+              'mode': 'lines+markers',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': '56f958ee-4e85-419e-9e09-db6250fd1576',
+              'x': array([datetime.datetime(2000, 1, 1, 0, 0),
+                          datetime.datetime(2000, 2, 1, 0, 0),
+                          datetime.datetime(2000, 3, 1, 0, 0), ...,
+                          datetime.datetime(2024, 3, 1, 0, 0),
+                          datetime.datetime(2024, 4, 1, 0, 0),
+                          datetime.datetime(2024, 5, 1, 0, 0)], dtype=object),
+              'y': array([ 634667.06,  642380.66,  699807.25, ..., 1393324.52, 1428143.44,
+                          1401052.37])}],
+    'layout': {'hovermode': 'x unified',
+               'template': '...',
+               'title': {'text': 'Diesel Consumption Over Time'},
+               'xaxis': {'title': {'text': 'Date'}},
+               'yaxis': {'title': {'text': 'Consumption (Barrel, 42 gallons)'}}}
+})</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Label(value='Selected Range: None')</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="(2)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Importaci%C3%B3n"><strong>(2) Distribucición de Conjunto de Datos de Importación</strong><a class="anchor-link" href="#(2)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Importaci%C3%B3n">¶</a></h5>
 </div>
 </div>
 </div>
@@ -8652,16 +8958,59 @@ date
     'data': [{'marker': {'color': '#648FFF'},
               'name': 'Diesel',
               'type': 'histogram',
-              'uid': '4b9a3ab4-d3ca-4cc1-b40d-bb0bbe9a6300',
+              'uid': 'cfa89ad5-646e-4be8-81f5-4d1a1813a35a',
               'x': array([ 566101.99,  489525.8 ,  575559.68, ..., 1477038.  , 1294706.12,
                           1470870.09])}],
-    'layout': {'hovermode': 'x unified',
+    'layout': {'dragmode': 'select',
+               'hovermode': 'x unified',
                'template': '...',
                'title': {'text': 'Diesel Importation Distribution'},
                'xaxis': {'title': {'text': 'Importation (Barrel, 42 gallons)'}},
                'yaxis': {'title': {'text': 'Count'}}}
 })</pre>
 </div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FFB001'},
+              'mode': 'lines+markers',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': 'c9433405-d1f3-49a8-82b5-10164fbdae2e',
+              'x': array([datetime.datetime(2001, 1, 1, 0, 0),
+                          datetime.datetime(2001, 2, 1, 0, 0),
+                          datetime.datetime(2001, 3, 1, 0, 0), ...,
+                          datetime.datetime(2024, 3, 1, 0, 0),
+                          datetime.datetime(2024, 4, 1, 0, 0),
+                          datetime.datetime(2024, 5, 1, 0, 0)], dtype=object),
+              'y': array([ 566101.99,  489525.8 ,  575559.68, ..., 1477038.  , 1294706.12,
+                          1470870.09])}],
+    'layout': {'hovermode': 'x unified',
+               'template': '...',
+               'title': {'text': 'Diesel Importation Over Time'},
+               'xaxis': {'title': {'text': 'Date'}},
+               'yaxis': {'title': {'text': 'Importation (Barrel, 42 gallons)'}}}
+})</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Label(value='Selected Range: None')</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="(3)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Precio"><strong>(3) Distribucición de Conjunto de Datos de Precio</strong><a class="anchor-link" href="#(3)-Distribucici%C3%B3n-de-Conjunto-de-Datos-de-Precio">¶</a></h5>
 </div>
 </div>
 </div>
@@ -8696,9 +9045,10 @@ date
     'data': [{'marker': {'color': '#648FFF'},
               'name': 'Diesel',
               'type': 'histogram',
-              'uid': '9f374efd-a504-4fef-9a00-cf2a274a32c3',
+              'uid': 'b47648f7-9e4f-4f09-85d4-a00249a7f1f9',
               'x': array([17.61, 17.61, 17.61, ..., 28.09, 28.09, 28.09])}],
-    'layout': {'hovermode': 'x unified',
+    'layout': {'dragmode': 'select',
+               'hovermode': 'x unified',
                'template': '...',
                'title': {'text': 'Diesel Pricing Distribution'},
                'xaxis': {'title': {'text': 'Pricing (GTQ/Gal)'}},
@@ -8706,6 +9056,36 @@ date
 })</pre>
 </div>
 </div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FigureWidget({
+    'data': [{'line': {'color': '#FFB001'},
+              'mode': 'lines+markers',
+              'name': 'Diesel',
+              'type': 'scatter',
+              'uid': '02488d98-e5c3-4e98-947c-7fcadfe34e38',
+              'x': array([datetime.datetime(2021, 1, 1, 0, 0),
+                          datetime.datetime(2021, 1, 2, 0, 0),
+                          datetime.datetime(2021, 1, 3, 0, 0), ...,
+                          datetime.datetime(2024, 7, 26, 0, 0),
+                          datetime.datetime(2024, 7, 27, 0, 0),
+                          datetime.datetime(2024, 7, 28, 0, 0)], dtype=object),
+              'y': array([17.61, 17.61, 17.61, ..., 28.09, 28.09, 28.09])}],
+    'layout': {'hovermode': 'x unified',
+               'template': '...',
+               'title': {'text': 'Diesel Pricing Over Time'},
+               'xaxis': {'title': {'text': 'Date'}},
+               'yaxis': {'title': {'text': 'Pricing (GTQ/Gal)'}}}
+})</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Label(value='Selected Range: None')</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -8715,7 +9095,15 @@ date
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="(4)-Comparaci%C3%B3n-Entre-Modelos"><strong>(4) Comparación Entre Modelos</strong><a class="anchor-link" href="#(4)-Comparaci%C3%B3n-Entre-Modelos">¶</a></h4>
+<p><strong>Instrucciones para Utilizar el Gráfico ⚙️</strong></p>
+<p>En estas visualizaciones interactivas, puedes explorar un histograma que muestra la distribución de diferentes tipos de combustibles en Guatemala.</p>
+<ul>
+<li><p>Histograma: El histograma muestra la distribución de los tipos de combustible seleccionados. Visualiza con qué frecuencia ocurren diferentes rangos de valores en los datos.</p>
+</li>
+<li><p>Gráfico de Líneas: El gráfico de líneas a la derecha muestra la tendencia de los precios de combustible a lo largo del tiempo. Proporciona una vista de serie temporal del tipo de combustible seleccionado.</p>
+</li>
+</ul>
+<p>Cuando selecciones un rango en el histograma, el gráfico de líneas se actualizará automáticamente para mostrar solo los puntos de datos que caen dentro de ese rango seleccionado. Esto te permite analizar las tendencias en los precios del combustible que corresponden a los valores de consumo seleccionados.</p>
 </div>
 </div>
 </div>
@@ -8726,6 +9114,98 @@ date
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="(4)-An%C3%A1lisis-Comparativo-de-Desempe%C3%B1o-de-Modelos-Predictivos-(Consumo-de-Diesel)"><strong>(4) Análisis Comparativo de Desempeño de Modelos Predictivos (Consumo de Diesel)</strong><a class="anchor-link" href="#(4)-An%C3%A1lisis-Comparativo-de-Desempe%C3%B1o-de-Modelos-Predictivos-(Consumo-de-Diesel)">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Function to plot model comparisons with custom colors</span>
+<span class="k">def</span> <span class="nf">plot_model_comparisons</span><span class="p">(</span><span class="n">mae_results</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="c1"># Create a figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Add traces for each model with custom colors</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">mae</span><span class="p">),</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mae_results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">colors</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">Bar</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">model</span><span class="p">],</span>
+                <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">mae</span><span class="p">],</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">'MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s1">,.2f</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+                <span class="n">textposition</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span>
+                <span class="n">hoverinfo</span><span class="o">=</span><span class="s1">'text'</span><span class="p">,</span>
+                <span class="n">marker_color</span><span class="o">=</span><span class="n">color</span>  <span class="c1"># Set custom color</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    
+    <span class="c1"># Update layout</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">'Model Comparisons: MAE of Diesel Consumption Predictions'</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">'Model'</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">'Mean Absolute Error (MAE)'</span><span class="p">,</span>
+        <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'MAE'</span><span class="p">,</span> <span class="n">zeroline</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">barmode</span><span class="o">=</span><span class="s1">'group'</span>
+    <span class="p">)</span>
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Sample MAE results for the models</span>
+<span class="n">mae_results</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'LSTM'</span><span class="p">:</span> <span class="mf">96786.89</span><span class="p">,</span>
+    <span class="s1">'ARIMA_1'</span><span class="p">:</span> <span class="mf">85512.12</span><span class="p">,</span>
+    <span class="s1">'ARIMA_2'</span><span class="p">:</span> <span class="mf">89274.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Call the function to plot with custom colors</span>
+<span class="n">plot_model_comparisons</span><span class="p">(</span><span class="n">mae_results</span><span class="p">,</span> <span class="n">palette</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Instrucciones para Utilizar el Gráfico ⚙️</strong></p>
+<p>Este gráfico de barras interactivo compara el Error Absoluto Medio (MAE) de diferentes modelos predictivos para el consumo de diésel en Guatemala. Cuanto más bajo sea el MAE, mejor será el rendimiento del modelo en la predicción del consumo de diésel.</p>
+<p>Una vez que se muestre el gráfico, verás una barra para cada modelo predictivo (por ejemplo, LSTM, ARIMA_1, ARIMA_2). La altura de cada barra representa el valor de MAE para ese modelo.
+Mueve el cursor sobre cada barra para ver información detallada sobre el modelo, incluido el valor exacto de MAE que se mostrará como un tooltip.</p>
+<p><strong>En la parte derecha puedes seleccionar los ajustes de comparación, puedes comparar entre los 3 modelos o solamente 2 de ellos, ¡con la configuración que tú desees!</strong></p>
 </div>
 </div>
 </div>
